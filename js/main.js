@@ -457,7 +457,7 @@ $(function() {
         var singer,
             num,
             $list = $('.playing').find('.song-list');
-        $list.find('.song-list').html('');
+        $list.html('');
         music = JSON.parse(localStorage.getItem('music')) || [];
         $.each(music, function(index, value) {
             singer = value.artist[0];
