@@ -268,25 +268,35 @@ $(function() {
             dataType: 'jsonp',
             data: 'types=search&name=' + s + '&source=' + source + '&pages=' + page,
             success: function(data) {
-                var len = $('.searching').find('.song-list-item').length;
+                var singer,
+                    num,
+                    len = $('.searching').find('.song-list-item').length,
+                    $list = $('.searching').find('.song-list');
                 $.each(data, function(index, value) {
                     search_song.push(value);
-                    $('.searching').find('.song-list').append(
+                    singer = value.artist[0];
+                    num = value.artist.length;
+                    if(num > 1){
+                        for(var i = 1; i < num; i++){
+                            singer = singer + '、' + value.artist[i];
+                        }
+                    }
+                    $list.append(
                         '<li class="song-list-item" id=' + value.id + '>' +
                         '<div class="num">' + (len + index + 1) + '</div>' +
                         '<div class="title">' + value.name + '</div>' +
-                        '<div class="singer">' + value.artist[0] + '</div>' +
+                        '<div class="singer">' + singer + '</div>' +
                         '</li>');
                 })
-                $('.searching').find('.song-list').find('p').remove();
+                $list.find('p').remove();
                 var count = data.length;
                 if (len == 0 && count < 20) {
                     return layer.close(layer.index);
                 }
                 if (count < 20) {
-                    $('.searching').find('.song-list').append('<p class="noMore">没有更多数据了</p>');
+                    $list.append('<p class="noMore">没有更多数据了</p>');
                 } else {
-                    $('.searching').find('.song-list').append('<p class="loadMore">加载更多</p>');
+                    $list.append('<p class="loadMore">加载更多</p>');
                 }
                 layer.close(layer.index);
             }
@@ -444,14 +454,24 @@ $(function() {
     })
 
     function loadMusic() {
-        $('.playing').find('.song-list').html('');
+        var singer,
+            num,
+            $list = $('.playing').find('.song-list');
+        $list.find('.song-list').html('');
         music = JSON.parse(localStorage.getItem('music')) || [];
         $.each(music, function(index, value) {
-            $('.playing').find('.song-list').append(
+            singer = value.artist[0];
+            num = value.artist.length;
+            if(num > 1){
+                for(var i = 1; i < num; i++){
+                    singer = singer + '、' + value.artist[i];
+                }
+            }
+            $list.append(
                 '<li class="song-list-item" id=' + value.id + '>' +
                 '<div class="num">' + (index + 1) + '</div>' +
                 '<div class="title">' + value.name + '</div>' +
-                '<div class="singer">' + value.artist[0] + '</div>' +
+                '<div class="singer">' + singer + '</div>' +
                 '<div class="delete">&times;</div>' +
                 '</li>');
         })
