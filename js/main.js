@@ -266,7 +266,7 @@ $(function() {
             url: baseURL,
             dataType: 'jsonp',
             data: 'types=search&name=' + s + '&source=' + source + '&pages=' + page,
-            timeout: 5000,
+            timeout: 20000,
             beforeSend: function() {
                 layer.close(layer.index);
                 layer.msg('加载中', { icon: 16, time: 0, shade: [0.3, '#000'] });
