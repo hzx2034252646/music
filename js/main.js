@@ -8,6 +8,7 @@ function formatTime(t) {
     s_str = s < 10 ? '0' + s : '' + s;
     return min_str + ':' + s_str;
 }
+
 function parseLyric(song, json, time) {
     var lyric = [],
         m, s, ms, time_str, lyric_arr1;
@@ -260,13 +261,16 @@ $(function() {
     })
 
     function searchSong(s, page) {
-        layer.close(layer.index);
-        layer.msg('加载中', { icon: 16, time: 0 });
         $.ajax({
             type: 'POST',
             url: baseURL,
             dataType: 'jsonp',
             data: 'types=search&name=' + s + '&source=' + source + '&pages=' + page,
+            timeout: 5000,
+            beforeSend: function() {
+                layer.close(layer.index);
+                layer.msg('加载中', { icon: 16, time: 0, shade: [0.3, '#000'] });
+            },
             success: function(data) {
                 var singer,
                     num,
@@ -276,8 +280,8 @@ $(function() {
                     search_song.push(value);
                     singer = value.artist[0];
                     num = value.artist.length;
-                    if(num > 1){
-                        for(var i = 1; i < num; i++){
+                    if (num > 1) {
+                        for (var i = 1; i < num; i++) {
                             singer = singer + '、' + value.artist[i];
                         }
                     }
@@ -299,6 +303,14 @@ $(function() {
                     $list.append('<p class="loadMore">加载更多</p>');
                 }
                 layer.close(layer.index);
+            },
+            complete: function(xhr, status) {
+                if (status == 'timeout') {
+                    layer.msg('加载超时');
+                }
+                if (status == 'error') {
+                    layer.msg('加载失败');
+                }
             }
         })
     }
@@ -462,8 +474,8 @@ $(function() {
         $.each(music, function(index, value) {
             singer = value.artist[0];
             num = value.artist.length;
-            if(num > 1){
-                for(var i = 1; i < num; i++){
+            if (num > 1) {
+                for (var i = 1; i < num; i++) {
                     singer = singer + '、' + value.artist[i];
                 }
             }
