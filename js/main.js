@@ -365,7 +365,7 @@ $(function() {
             dataType: 'jsonp',
             data: 'types=url&source=' + song.source + '&id=' + song.url_id,
             success: function(data) {
-                audio.src = data.url;
+                audio.src = data.url.replace('http://m8c','http://m7');
                 audio.load();
                 audio.addEventListener('durationchange', function() {
                     $('.total-time').text(formatTime(audio.duration));
