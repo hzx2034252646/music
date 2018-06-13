@@ -13,8 +13,64 @@ body {
     -webkit-user-select: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 ul {
     list-style: none;
+}
+
+@font-face {
+    font-family: "iconfont";
+    src: url('../font/iconfont.eot');
+    /* IE9*/
+    src: url('../font/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/iconfont.woff') format('woff'), /* chrome, firefox */
+    url('../font/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../font/iconfont.svg#iconfont') format('svg');
+    /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.blur_bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: -webkit-linear-gradient(right top, #7f7280, #3f3380);
+    z-index: -2;
+}
+
+.blur {
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+}
+
+.bg_mask {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+::-webkit-input-placeholder {
+    color: #ddd;
 }
 
 .container {
@@ -23,79 +79,10 @@ ul {
     flex-direction: column;
 }
 
-.header {
-    flex: 0 0 35px;
-    background: rgba(0, 0, 0, .3);
-    color: #ccc;
-    position: relative;
-}
-
-.header_btn_bar {
-    height: 100%;
-    display: flex;
-}
-
-.header_btn_item {
-    flex: 1;
-    text-align: center;
-    height: 35px;
-    line-height: 35px;
-    border-bottom: 2px solid transparent;
-    box-sizing: border-box;
-}
-
-.btn-active {
-    border-bottom: 2px solid #ccc;
-    color: #eee;
-}
-
-.search {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    display: none;
-    box-shadow: 1px 1px 15px #ccc;
-}
-
-.search .wrapper {
-    height: 100%;
-    display: flex;
-}
-
-.search_input {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: none;
-    padding-left: 15px;
-    color: #ddd;
-    font-size: 16px;
-}
-
-::-webkit-input-placeholder {
-    color: #ddd;
-}
-
-.search_btn, .cancel_btn {
-    flex: 0 0 50px;
-    line-height: 35px;
-    text-align: center;
-}
-
 .main {
     flex: 1;
     color: #ddd;
     overflow: auto;
-}
-
-.song-list-item {
-    height: 50px;
-    display: flex;
-    line-height: 50px;
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .li-active {
@@ -107,40 +94,38 @@ ul {
     text-indent: -99px;
 }
 
-.song-list-item .num {
+.song-list-item, .song-list-top{
+    height: 50px;
+    display: flex;
+    line-height: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+}
+
+.song-list-item .num, .song-list-top .num{
     flex: 0 0 50px;
     text-align: center;
 }
 
-.title, .singer{
+.title, .singer, .album {
     padding-right: 10px;
+    overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
 }
 
-.title{
+.title {
     flex: 1.5;
 }
 
-.singer{
+.singer, .album {
     flex: 1;
 }
 
-.delete{
-    flex: 0 0 50px;
-    text-align: center;
-}
-
-.loadMore, .noMore{
+.loadMore, .noMore {
     height: 50px;
     line-height: 50px;
     text-align: center;
-}
-
-.player {
-    display: none;
-    height: 100%;
+    cursor: pointer;
 }
 
 .player .wrapper {
@@ -191,12 +176,7 @@ ul {
     height: 10px;
     display: inline-block;
     background: url('../img/wave.gif') no-repeat;
-}
-
-.footer {
-    flex: 0 0 120px;
-    display: flex;
-    flex-direction: column;
+    margin-right: 10px;
 }
 
 .progress {
@@ -206,11 +186,6 @@ ul {
     align-items: center;
     color: #eee;
     font-size: 12px;
-}
-
-#progress {
-    flex: 0.9;
-    height: 25px;
 }
 
 .progressbar {
@@ -264,7 +239,6 @@ ul {
 }
 
 .control {
-    flex: 1;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -272,10 +246,6 @@ ul {
 
 .control .iconfont {
     color: #ddd;
-}
-
-.icon-active {
-    color: #fff !important;
 }
 
 .singlePlay, .listLoop, .randomPlay, .setting {
@@ -296,54 +266,4 @@ ul {
 
 .pause {
     display: none;
-}
-
-.layui-layer-tips .layui-layer-content {
-    padding: 0 !important;
-    background: none !important;
-}
-
-#source {
-    width: 100px;
-    height: 150px;
-    color: #fff;
-}
-
-#source li {
-    width: 100px;
-    height: 30px;
-    line-height: 30px;
-    text-align: center;
-    background: #000;
-}
-
-.source-active {
-    background: #222 !important;
-}
-
-.blur_bg {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-image: url('../img/bg.png');
-    z-index: -2;
-}
-
-.blur {
-    -webkit-filter: blur(30px);
-}
-
-.bg_mask {
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .4);
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
 }

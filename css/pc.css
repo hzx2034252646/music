@@ -1,0 +1,294 @@
+body {
+    min-width: 1000px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+.header {
+    flex: 0 0 50px;
+    line-height: 50px;
+}
+
+.logo {
+    font-size: 23px;
+}
+
+.header_title {
+    color: #ccc;
+    margin-left: 20px;
+    font-size: 23px;
+    cursor: pointer;
+    float: left;
+}
+
+.header_title:hover {
+    color: #fff;
+}
+
+.search {
+    width: 250px;
+    height: 30px;
+    border: 1px solid #ccc;
+    float: left;
+    border-radius: 20px;
+    margin-top: 10px;
+    margin-left: 20%;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.search:hover {
+    border-color: #fff;
+}
+
+.search_source, .search_source_item:before {
+    background: url('https://ws1.sinaimg.cn/large/a15b4afegy1fn3gwimg9gj206y01eglg.jpg') no-repeat;
+}
+
+.search_source {
+    flex: 0 0 23px;
+    height: 23px;
+    display: inline-block;
+    background-size: auto 23px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.search_source_list {
+    padding: 5px 0;
+    background: #eee;
+    box-shadow: 0 0 8px #d4d3d3;
+    border-radius: 3px;
+    position: absolute;
+    top: 32px;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.search_source_list:before {
+    content: '';
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid #eee;
+    position: absolute;
+    top: -20px;
+    left: 10px;
+}
+
+.search_source_item {
+    width: 150px;
+    padding: 5px 10px;
+    line-height: 23px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.search_source_item:hover {
+    background: #ddd;
+}
+
+.search_source_item:before {
+    content: '';
+    width: 23px;
+    height: 23px;
+    background-size: auto 23px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.search_source[data-source=netease], .search_source_item[data-source=netease]:before {
+    background-position: 0 0;
+}
+
+.search_source[data-source=tencent], .search_source_item[data-source=tencent]:before {
+    background-position: -23px 0;
+}
+
+.search_source[data-source=xiami], .search_source_item[data-source=xiami]:before {
+    background-position: -46px 0;
+}
+
+.search_source[data-source=kugou], .search_source_item[data-source=kugou]:before {
+    background-position: -69px 0;
+}
+
+.search_source[data-source=baidu], .search_source_item[data-source=baidu]:before {
+    background-position: -92px 0;
+}
+
+
+.search_input {
+    flex: 1;
+    background: none;
+    outline: none;
+    border: none;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #fff;
+}
+
+.main {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+}
+
+.playing {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.song-list-top {
+    flex: 0 0 50px;
+}
+
+.song-list {
+    flex: 1;
+    overflow: auto;
+}
+
+.ellipsis{
+    width: 100%;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.song-list-item:hover .icon{
+    display: inline-block;
+}
+
+.song-list-item .title {
+    position: relative;
+}
+
+.icon {
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+    background: url('../img/icon.png') no-repeat;
+    position: absolute;
+    top: 6px;
+    display: none;
+}
+
+.play_icon {
+    background-position: -160px 0;
+    right: 94px;
+}
+
+.searching .play_icon {
+    right: 52px;
+}
+
+.play_icon:hover {
+    background-position: 0 0;
+}
+
+.download_icon {
+    background-position: -160px -120px;
+    right: 52px;
+}
+
+.searching .download_icon {
+    right: 10px;
+}
+
+.download_icon:hover {
+    background-position: 0 -120px;
+}
+
+.delete_icon {
+    background-position: -160px -160px;
+    right: 10px;
+}
+
+.delete_icon:hover {
+    background-position: 0 -160px;
+}
+
+.player {
+    width: 30%;
+    height: 100%;
+}
+
+.footer {
+    width: 90%;
+    margin: 0 auto;
+    flex: 0 0 100px;
+    display: flex;
+    align-items: center;
+}
+
+.progress {
+    flex: 1;
+    font-size: 14px;
+}
+
+.current-time, .total-time {
+    margin: 0 10px;
+}
+
+#progress {
+    flex: 1;
+    height: 25px;
+    cursor: pointer;
+}
+
+.control {
+    flex: 0 0 250px;
+}
+
+.control .iconfont {
+    cursor: pointer;
+}
+
+.control .iconfont:hover {
+    color: #fff;
+}
+
+#playing {
+    flex: 0 0 75px;
+    height: 30px;
+    display: flex;
+    color: #ddd;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#playing:hover {
+    color: #fff;
+    border-color: #fff;
+}
+
+#playing .playlist {
+    font-size: 30px;
+    flex: 0 0 30px;
+    position: relative;
+    top: -2px;
+}
+
+#playing .count {
+    flex: 1;
+    line-height: 30px;
+    text-align: center;
+}

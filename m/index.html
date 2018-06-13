@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="x5-page-mode" content="app">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>HZXOnlinePlayer</title>
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/mobile.css">
+    <script>
+        if(!navigator.userAgent.match(/Mobile/i)){
+            location.href = '/music';
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <ul class="header_btn_bar">
+                <li class="header_btn_item" id="player">播放器</li>
+                <li class="header_btn_item btn-active" id="playing">正在播放</li>
+                <li class="header_btn_item" id="search">歌曲搜索</li>
+            </ul>
+            <div class="search">
+            	<div class="wrapper">
+					<input type="text" class="search_input" placeholder="搜索歌曲">
+					<span class="search_btn">搜索</span>
+					<span class="cancel_btn">取消</span>
+            	</div>
+            </div>
+        </div>
+        <div class="main">
+        	<div class="searching">
+				<ul class="song-list"></ul>
+        	</div>
+			<div class="playing">
+				<ul class="song-list"></ul>
+        	</div>
+        	<div class="player">
+        		<div class="wrapper">
+					<div class="pic">
+						<img src="../img/player_cover.png" alt="">
+					</div>
+					<div class="content">
+						<div class="lyric"></div>
+					</div>
+        		</div>
+        	</div>
+        </div>
+        <div class="footer">
+            <div class="progress">
+                <span class="current-time">00:00</span>
+                <div id="progress">
+	                <div class="progressbar">
+	                    <div class="current-progress"></div>
+	                    <div class="buffered-progress"></div>
+	                    <div class="ball">
+	                        <div class="red-dot"></div>
+	                    </div>
+	                </div>
+                </div>
+                <span class="total-time">00:00</span>
+            </div>
+            <div class="control">
+            	<span style="width: 27px">
+					<span class="iconfont singlePlay">&#xe607;</span>
+					<span class="iconfont listLoop">&#xe609;</span>
+					<span class="iconfont randomPlay">&#xe60a;</span>
+            	</span>
+            	<span class="iconfont prev">&#xe681;</span>
+            	<span class="iconfont play">&#xe71c;</span>
+            	<span class="iconfont pause">&#xe71d;</span>
+            	<span class="iconfont next">&#xe67f;</span>
+            	<span class="iconfont setting">&#xe617;</span>
+            </div>
+        </div>
+        <audio src="" hidden loop autoplay></audio>
+        <div class="blur_bg"></div>
+	    <div class="bg_mask"></div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../layer/layer.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/mobile.js"></script>
+</body>
+
+</html>
