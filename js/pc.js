@@ -53,9 +53,11 @@ function searchSong(s, page) {
         complete: function(xhr, status) {
             if (status == 'timeout') {
                 layer.msg('加载超时');
+                page--;
             }
             if (status == 'error') {
                 layer.msg('加载失败');
+                page--;
             }
         }
     })
