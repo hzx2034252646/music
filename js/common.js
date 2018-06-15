@@ -1,5 +1,7 @@
-// var baseURL = 'http://www.gy84.com/music/api.php';
-var baseURL = 'https://www.fczbl.vip/musicplayer/api.php';
+var baseURL_http = 'http://www.gy84.com/music/api.php';
+var baseURL_https = 'https://www.fczbl.vip/musicplayer/api.php';
+var baseURL = location.protocol == 'https:' ? baseURL_https : baseURL_http;
+
 var isMobile = navigator.userAgent.match(/Mobile/i) ? true : false,
     audio = $('audio').get(0),
     source = 'netease',
