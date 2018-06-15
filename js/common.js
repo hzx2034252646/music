@@ -207,7 +207,7 @@ function playMusic(id) {
         dataType: 'jsonp',
         data: 'types=pic&source=' + song.source + '&id=' + song.pic_id,
         success: function(data) {
-            var url = data.url.replace('300y300', '400y400').replace('300h_300w', '400h_400w');
+            var url = data.url.replace('300y300', '400y400').replace('300h_300w', '400h_400w').replace('https://p3', 'https://p1');
             $('.pic').find('img').attr('src', url);
             $('.blur_bg').css({ 'background-image': 'url(' + url + ')' }).addClass('blur');
             $('.bg_mask').show();
