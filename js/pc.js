@@ -150,6 +150,9 @@ $(function() {
             },
             success: function(data) {
             	layer.close(layer.index);
+                if(!data.url) {
+                    return layer.msg('该歌曲暂时无法下载');
+                }
                 var a = document.createElement('a');
        			a.href = data.url;
        			a.download = song.name;
