@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="renderer" content="webkit">
     <title>HZXOnlinePlayer</title>
@@ -10,9 +11,16 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/pc.css">
     <script>
-        if (navigator.userAgent.match(/Mobile/i)) {
-            location.href = '/music/m';
+        function toMobile() {
+            var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            if (clientWidth < 800) {
+                location.href = location.protocol == 'file:' ? 'm/index.html' : '/music/m'
+            }
         }
+        window.onresize = function() {
+            toMobile();
+        }
+        toMobile();
     </script>
 </head>
 
