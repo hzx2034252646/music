@@ -11,16 +11,10 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/pc.css">
     <script>
-        function toMobile() {
-            var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            if (clientWidth < 800) {
-                location.href = location.protocol == 'file:' ? 'm/index.html' : '/music/m'
-            }
+        var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (clientWidth < 800) {
+            location.href = location.protocol == 'file:' ? 'm/index.html' : '/music/m'
         }
-        window.onresize = function() {
-            toMobile();
-        }
-        toMobile();
     </script>
 </head>
 
@@ -28,30 +22,30 @@
     <div class="container">
         <div class="header">
             <a class="header_title" href="./">
-            	<span class="iconfont logo">&#xe601;</span>HZXOnlinePlayer
-        	</a>
-        	<div class="search">
-        		<span class="search_source" data-source="netease">
-        			<ul class="search_source_list">
-        				<li class="search_source_item" data-source="netease">
-        					网易云音乐
-        				</li>
-        				<li class="search_source_item" data-source="tencent">
-        					QQ音乐
-        				</li>
-        				<li class="search_source_item" data-source="kugou">
-        					酷狗音乐
-        				</li>
-        				<li class="search_source_item" data-source="xiami">
-        					虾米音乐
-        				</li>
-        				<li class="search_source_item" data-source="baidu">
-        					百度音乐
-        				</li>
-        			</ul>
-        		</span>
-        		<input type="text" class="search_input" placeholder="搜索歌曲">
-        	</div>
+                <span class="iconfont logo">&#xe601;</span>HZXOnlinePlayer
+            </a>
+            <div class="search">
+                <span class="search_source" data-source="netease">
+                    <ul class="search_source_list">
+                        <li class="search_source_item" data-source="netease">
+                            网易云音乐
+                        </li>
+                        <li class="search_source_item" data-source="tencent">
+                            QQ音乐
+                        </li>
+                        <li class="search_source_item" data-source="kugou">
+                            酷狗音乐
+                        </li>
+                        <li class="search_source_item" data-source="xiami">
+                            虾米音乐
+                        </li>
+                        <li class="search_source_item" data-source="baidu">
+                            百度音乐
+                        </li>
+                    </ul>
+                </span>
+                <input type="text" class="search_input" placeholder="搜索歌曲">
+            </div>
         </div>
         <div class="main">
             <div class="playing">
@@ -81,9 +75,9 @@
                 <span class="iconfont pause" title="暂停">&#xe71d;</span>
                 <span class="iconfont next" title="下一首">&#xe67f;</span>
                 <span style="width: 27px">
-					<span class="iconfont singlePlay" title="单曲循环">&#xe607;</span>
-                <span class="iconfont listLoop" title="列表循环">&#xe609;</span>
-                <span class="iconfont randomPlay" title="随机播放">&#xe60a;</span>
+                    <span class="iconfont singlePlay" title="单曲循环">&#xe607;</span>
+                    <span class="iconfont listLoop" title="列表循环">&#xe609;</span>
+                    <span class="iconfont randomPlay" title="随机播放">&#xe60a;</span>
                 </span>
             </div>
             <div class="progress">

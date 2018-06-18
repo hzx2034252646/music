@@ -18,16 +18,10 @@
     <link rel="stylesheet" href="../css/common.css">
     <link rel="stylesheet" href="../css/mobile.css">
     <script>
-        function toPC() {
-            var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-            if (clientWidth > 800) {
-                location.href = location.protocol == 'file:' ? '../index.html' : '/music'
-            }
+        var clientWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        if (clientWidth > 800) {
+            location.href = location.protocol == 'file:' ? '../index.html' : '/music'
         }
-        window.onresize = function() {
-            toPC();
-        }
-        toPC();
     </script>
 </head>
 
@@ -40,61 +34,61 @@
                 <li class="header_btn_item" id="search">歌曲搜索</li>
             </ul>
             <div class="search">
-            	<div class="wrapper">
-					<input type="text" class="search_input" placeholder="搜索歌曲">
-					<span class="search_btn">搜索</span>
-					<span class="cancel_btn">取消</span>
-            	</div>
+                <div class="wrapper">
+                    <input type="text" class="search_input" placeholder="搜索歌曲">
+                    <span class="search_btn">搜索</span>
+                    <span class="cancel_btn">取消</span>
+                </div>
             </div>
         </div>
         <div class="main">
-        	<div class="searching">
-				<ul class="song-list"></ul>
-        	</div>
-			<div class="playing">
-				<ul class="song-list"></ul>
-        	</div>
-        	<div class="player">
-        		<div class="wrapper">
-					<div class="pic">
-						<img src="../img/player_cover.png" alt="">
-					</div>
-					<div class="content">
-						<div class="lyric"></div>
-					</div>
-        		</div>
-        	</div>
+            <div class="searching">
+                <ul class="song-list"></ul>
+            </div>
+            <div class="playing">
+                <ul class="song-list"></ul>
+            </div>
+            <div class="player">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img src="../img/player_cover.png" alt="">
+                    </div>
+                    <div class="content">
+                        <div class="lyric"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="footer">
             <div class="progress">
                 <span class="current-time">00:00</span>
                 <div id="progress">
-	                <div class="progressbar">
-	                    <div class="current-progress"></div>
-	                    <div class="buffered-progress"></div>
-	                    <div class="ball">
-	                        <div class="red-dot"></div>
-	                    </div>
-	                </div>
+                    <div class="progressbar">
+                        <div class="current-progress"></div>
+                        <div class="buffered-progress"></div>
+                        <div class="ball">
+                            <div class="red-dot"></div>
+                        </div>
+                    </div>
                 </div>
                 <span class="total-time">00:00</span>
             </div>
             <div class="control">
-            	<span style="width: 27px">
-					<span class="iconfont singlePlay">&#xe607;</span>
-					<span class="iconfont listLoop">&#xe609;</span>
-					<span class="iconfont randomPlay">&#xe60a;</span>
-            	</span>
-            	<span class="iconfont prev">&#xe681;</span>
-            	<span class="iconfont play">&#xe71c;</span>
-            	<span class="iconfont pause">&#xe71d;</span>
-            	<span class="iconfont next">&#xe67f;</span>
-            	<span class="iconfont setting">&#xe617;</span>
+                <span style="width: 27px">
+                    <span class="iconfont singlePlay">&#xe607;</span>
+                    <span class="iconfont listLoop">&#xe609;</span>
+                    <span class="iconfont randomPlay">&#xe60a;</span>
+                </span>
+                <span class="iconfont prev">&#xe681;</span>
+                <span class="iconfont play">&#xe71c;</span>
+                <span class="iconfont pause">&#xe71d;</span>
+                <span class="iconfont next">&#xe67f;</span>
+                <span class="iconfont setting">&#xe617;</span>
             </div>
         </div>
         <audio src="" hidden loop autoplay></audio>
         <div class="blur_bg"></div>
-	    <div class="bg_mask"></div>
+        <div class="bg_mask"></div>
     </div>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="../layer/layer.js"></script>
