@@ -139,7 +139,11 @@ $(function() {
     })
     $('.song-list').delegate('.download_icon', 'click', function() {
         var id = $(this).parent().parent().attr('id');
-        var song = music.find(item => item.id == id) || search_song.find(item => item.id == id);
+        var song = music.find(function(item){
+            return item.id == id;
+        }) || search_song.find(function(item){
+            return item.id == id;
+        });
         $.ajax({
             type: 'POST',
             url: baseURL,
@@ -155,14 +159,17 @@ $(function() {
                 }
                 var a = document.createElement('a');
        			a.href = data.url;
-       			a.download = song.name;
+                a.download = song.name;
+                a.target = '_blank';
        			a.click();
             }
         })
     })
     $('.song-list').delegate('.delete_icon', 'click', function() {
         var id = $(this).parent().parent().attr('id');
-        var index = music.findIndex(item => item.id == id);
+        var index = music.findIndex(function(item){
+            return item.id == id;
+        });
         music.splice(index, 1);
         localStorage.setItem('music', JSON.stringify(music));
         loadMusic();

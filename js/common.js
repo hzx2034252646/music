@@ -13,6 +13,27 @@ var isMobile = navigator.userAgent.match(/Mobile/i) ? true : false,
     currentSong = {},
     lastPlayTime = 0;
 
+if (!Array.prototype.find) {
+    Array.prototype.find = function (callback) {
+        var len = this.length;
+        for (var i = 0; i < len; i++) {
+            if (callback(this[i], i)) {
+                return this[i];
+            }
+        }
+        return undefined;
+    }
+    Array.prototype.findIndex = function (callback) {
+        var len = this.length;
+        for (var i = 0; i < len; i++) {
+            if (callback(this[i], i)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
 function formatTime(t) {
     var min = Math.floor(parseFloat(t) / 60);
     var s = Math.floor(parseFloat(t)) - min * 60;
@@ -52,7 +73,10 @@ function parseLyric(song, json, time) {
         }
         for (var k = 0; k < time_str.length; k++) {
             if (lyric[i] != '') {
-                json[time[k]] = { "time": time[k], "lyric": lyric[i] };
+                json[time[k]] = {
+                    "time": time[k],
+                    "lyric": lyric[i]
+                };
             }
         }
     }
@@ -121,7 +145,9 @@ function loadLyric(lyric, tlyric) {
                 if (isMobile && $('.player .pic').css('display') != 'none') {
                     dis = 0;
                 }
-                $content.stop().animate({ scrollTop: top - dis }, 500);
+                $content.stop().animate({
+                    scrollTop: top - dis
+                }, 500);
                 return;
             }
         }
@@ -130,13 +156,13 @@ function loadLyric(lyric, tlyric) {
     //滚动歌词时停止自动滚动定位
     var timeout = null;
     var autoScroll = true;
-    $content.scroll(function() {
+    $content.scroll(function () {
         if (timeout != null) {
             clearTimeout(timeout);
         }
         autoScroll = false;
         audio.removeEventListener('timeupdate', moveLyric);
-        timeout = setTimeout(function() {
+        timeout = setTimeout(function () {
             autoScroll = true;
             audio.addEventListener('timeupdate', moveLyric);
         }, 1000);
@@ -158,7 +184,11 @@ function progress() {
 }
 
 function playMusic(id) {
-    var song = search_song.find(item => item.id == id) || music.find(item => item.id == id);
+    var song = search_song.find(function (item) {
+        return item.id == id;
+    }) || music.find(function (item) {
+        return item.id == id;
+    });
     currentSong = song;
     if (Date.now() - lastPlayTime < 1000) {
         return;
@@ -175,17 +205,17 @@ function playMusic(id) {
         url: baseURL,
         dataType: 'jsonp',
         data: 'types=url&source=' + song.source + '&id=' + song.url_id,
-        success: function(data) {
+        success: function (data) {
             audio.src = data.url.replace(/http:\/\/(m7c|m8c)/, 'http://m7');
             audio.load();
-            audio.addEventListener('durationchange', function() {
+            audio.addEventListener('durationchange', function () {
                 $('.total-time').text(formatTime(audio.duration));
             });
-            audio.addEventListener('canplay', function() {
+            audio.addEventListener('canplay', function () {
                 audio.play();
             });
             audio.addEventListener('timeupdate', progress);
-            audio.addEventListener('timeupdate', function() {
+            audio.addEventListener('timeupdate', function () {
                 if (audio.paused) {
                     $('.pause').hide()
                     $('.play').show()
@@ -197,7 +227,7 @@ function playMusic(id) {
                     $('.song-list').find('li[id=' + id + ']').addClass('li-active');
                 }
             });
-            audio.onerror = function() {
+            audio.onerror = function () {
                 layer.msg('该歌曲暂时无法播放');
             };
         }
@@ -207,12 +237,14 @@ function playMusic(id) {
         url: baseURL,
         dataType: 'jsonp',
         data: 'types=pic&source=' + song.source + '&id=' + song.pic_id,
-        success: function(data) {
+        success: function (data) {
             var url = data.url.replace('300y300', '400y400').replace('300h_300w', '400h_400w').replace('https://p3', 'https://p1');
             $('.pic').find('img').attr('src', url);
-            $('.blur_bg').css({ 'background-image': 'url(' + url + ')' }).addClass('blur');
+            $('.blur_bg').css({
+                'background-image': 'url(' + url + ')'
+            }).addClass('blur');
             $('.bg_mask').show();
-            if(!isMobile) {
+            if (!isMobile) {
                 $('.bg_mask').css('background', 'rgba(0, 0, 0, .6)');
             }
         }
@@ -222,7 +254,7 @@ function playMusic(id) {
         url: baseURL,
         dataType: 'jsonp',
         data: 'types=lyric&source=' + song.source + '&id=' + song.lyric_id,
-        success: function(data) {
+        success: function (data) {
             loadLyric(data.lyric, data.tlyric);
         }
     })
@@ -230,21 +262,23 @@ function playMusic(id) {
     if (localStorage.getItem('music')) {
         musicArray = JSON.parse(localStorage.getItem('music'));
     }
-    var index = musicArray.findIndex(item => item.id == id)
+    var index = musicArray.findIndex(function (item) {
+        return item.id == id;
+    })
     if (index > -1) {
         musicArray.splice(index, 1);
     }
     musicArray.unshift(song);
     localStorage.setItem('music', JSON.stringify(musicArray));
-    if(!isMobile) {
+    if (!isMobile) {
         $('.count').text(musicArray.length);
     }
 }
 
-$(function() {
+$(function () {
 
     //播放
-    $('.play').click(function() {
+    $('.play').click(function () {
         $(this).hide();
         $('.pause').show();
         if (!audio.src.match('mp3')) {
@@ -253,35 +287,39 @@ $(function() {
         audio.play();
     })
     //暂停
-    $('.pause').click(function() {
+    $('.pause').click(function () {
         $(this).hide();
         $('.play').show();
         audio.pause();
     })
     //上一首
-    $('.prev').click(function() {
+    $('.prev').click(function () {
         if (!music[0]) {
             return;
         }
-        var i = music.findIndex(item => item.id == currentSong.id);
+        var i = music.findIndex(function (item) {
+            return item.id == currentSong.id;
+        });
         if (i == 0) {
             i = music.length;
         }
         playMusic(music[i - 1].id);
     })
     //下一首
-    $('.next').click(function() {
+    $('.next').click(function () {
         if (!music[0]) {
             return;
         }
-        var i = music.findIndex(item => item.id == currentSong.id);
+        var i = music.findIndex(function (item) {
+            return item.id == currentSong.id;
+        });
         if (i == music.length - 1) {
             i = -1
         }
         playMusic(music[i + 1].id);
     })
     //单曲循环
-    $('.randomPlay').click(function() {
+    $('.randomPlay').click(function () {
         $('.singlePlay').show().siblings().hide();
         layer.close(layer.index);
         layer.msg('单曲循环');
@@ -289,14 +327,16 @@ $(function() {
     })
 
     function loop() {
-        var i = music.findIndex(item => item.id == currentSong.id);
+        var i = music.findIndex(function (item) {
+            return item.id == currentSong.id;
+        });
         if (i == music.length - 1) {
             i = -1;
         }
         playMusic(music[++i].id);
     }
     //列表循环
-    $('.singlePlay').click(function() {
+    $('.singlePlay').click(function () {
         $('.listLoop').show().siblings().hide();
         layer.close(layer.index);
         layer.msg('列表循环');
@@ -310,7 +350,7 @@ $(function() {
         playMusic(music[i].id);
     }
     //随机播放
-    $('.listLoop').click(function() {
+    $('.listLoop').click(function () {
         $('.randomPlay').show().siblings().hide();
         layer.close(layer.index);
         layer.msg('随机播放');
@@ -320,7 +360,7 @@ $(function() {
     })
     //歌曲播放进度条
     if (isMobile) {
-        $('#progress').on('touchstart', function(ev) {
+        $('#progress').on('touchstart', function (ev) {
             var oEvent = ev || event;
             var disX = oEvent.touches[0].clientX - $('#progress').offset().left - (1 / 2) * $('.ball').get(0).offsetWidth;
             if (disX < 0) {
@@ -330,8 +370,12 @@ $(function() {
             } else if ($('.buffered-progress').width() != 0 && disX > $('.buffered-progress').width()) {
                 disX = $('.buffered-progress').width();
             } else {
-                $('.ball').css({ left: disX });
-                $('.current-progress').css({ width: disX });
+                $('.ball').css({
+                    left: disX
+                });
+                $('.current-progress').css({
+                    width: disX
+                });
             }
             if (!audio.src.match('mp3')) {
                 return;
@@ -339,7 +383,7 @@ $(function() {
             audio.currentTime = disX / $('#progress').width() * audio.duration;
         })
     } else {
-        $('#progress').on('click', function(ev) {
+        $('#progress').on('click', function (ev) {
             var oEvent = ev || event;
             var disX = oEvent.clientX - $('#progress').offset().left - (1 / 2) * $('.ball').get(0).offsetWidth;
             if (disX < 0) {
@@ -349,8 +393,12 @@ $(function() {
             } else if ($('.buffered-progress').width() != 0 && disX > $('.buffered-progress').width()) {
                 disX = $('.buffered-progress').width();
             } else {
-                $('.ball').css({ left: disX });
-                $('.current-progress').css({ width: disX });
+                $('.ball').css({
+                    left: disX
+                });
+                $('.current-progress').css({
+                    width: disX
+                });
             }
             if (!audio.src.match('mp3')) {
                 return;
@@ -360,14 +408,14 @@ $(function() {
         var isClicked = false,
             $ball = $('.ball').get(0),
             $bar = $('.current-progress').get(0);
-        $ball.onmousedown = function(ev) {
+        $ball.onmousedown = function (ev) {
             isClicked = true;
             audio.removeEventListener('timeupdate', progress);
             var l,
                 oEvent = ev || event,
                 maxX = $('#progress').width(),
                 disX = oEvent.clientX - $ball.offsetLeft;
-            document.onmousemove = function(ev) {
+            document.onmousemove = function (ev) {
                 var oEvent = ev || event;
                 l = oEvent.clientX - disX;
                 if (l < 0) {
@@ -381,7 +429,7 @@ $(function() {
                     $bar.style.width = l + 'px';
                 }
             };
-            document.onmouseup = function() {
+            document.onmouseup = function () {
                 if (!isClicked) {
                     return;
                 }
@@ -401,15 +449,15 @@ $(function() {
             }
         }
     }
-    $('.search_input').keyup(function(ev) {
+    $('.search_input').keyup(function (ev) {
         if (ev.which == 13) {
             search();
         }
     })
-    $('.song-list').delegate('.loadMore', 'click', function() {
+    $('.song-list').delegate('.loadMore', 'click', function () {
         searchSong(keyword, ++page);
     })
-    $('#playing').click(function() {
+    $('#playing').click(function () {
         loadMusic();
     })
 })

@@ -11,6 +11,7 @@ body {
     font-family: '微软雅黑', sans-serif;
     user-select: none;
     -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 a {
@@ -51,6 +52,7 @@ ul {
     background-repeat: no-repeat;
     background-size: cover;
     background-image: -webkit-linear-gradient(right top, #7f7280, #3f3380);
+    background-image: -ms-linear-gradient(right top, #7f7280, #3f3380);
     z-index: -2;
 }
 
