@@ -228,7 +228,7 @@ ul {
     position: absolute;
     top: -6px;
     left: 0;
-    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #fff;
     z-index: 2;
 }
 
