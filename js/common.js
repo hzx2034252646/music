@@ -102,8 +102,11 @@ function loadLyric(lyric, tlyric) {
         $content = $('.content');
     $lyric.html('');
     if (!lyric) {
-        var h = $content.height()/2;
-        $lyric.html('<p style="margin-top:'+h+'px">暂无歌词</p>');
+        if ($('.player .pic').css('display') != 'none') {
+            $lyric.html('<p style="margin-top:20%">暂无歌词</p>');
+        } else {
+            $lyric.html('<p style="margin-top:50%">暂无歌词</p>');
+        }
         return;
     }
     parseLyric(lyric, json1, time1);
@@ -139,6 +142,9 @@ function loadLyric(lyric, tlyric) {
                     top = $lyric.find('.lyric-active').position().top;
                 }
                 var dis = tlyric ? (1 / 3) * h : (2 / 5) * h;
+                if (isMobile && $('.player .pic').css('display') != 'none') {
+                    dis = 0;
+                }
                 $content.stop().animate({
                     scrollTop: top - dis
                 }, 500);
@@ -189,9 +195,11 @@ function playMusic(id) {
     }
     lastPlayTime = Date.now();
     audio.pause();
-    var h = $('.content').height()/2;
-    console.log(h)
-    $('.lyric').html('<p style="margin-top:'+h+'px;color:#fff"><span class="wave"></span>歌词加载中</p>');
+    if ($('.player .pic').css('display') != 'none') {
+        $('.lyric').html('<p style="margin-top:20%;color:#fff"><span class="wave"></span>歌词加载中</p>');
+    } else {
+        $('.lyric').html('<p style="margin-top:50%;color:#fff"><span class="wave"></span>歌词加载中</p>');
+    }
     $.ajax({
         type: 'POST',
         url: baseURL,
@@ -260,12 +268,6 @@ function playMusic(id) {
     if (index > -1) {
         musicArray.splice(index, 1);
     }
-    index = music.findIndex(function (item) {
-        return item.id == id;
-    })
-    if (index == -1) {
-        music.push(song);
-    }
     musicArray.unshift(song);
     localStorage.setItem('music', JSON.stringify(musicArray));
     if (!isMobile) {
@@ -298,7 +300,7 @@ $(function () {
         var i = music.findIndex(function (item) {
             return item.id == currentSong.id;
         });
-        if (i == -1 || i == 0) {
+        if (i == 0) {
             i = music.length;
         }
         playMusic(music[i - 1].id);
