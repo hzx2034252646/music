@@ -22,6 +22,8 @@
         if (clientWidth > 800) {
             location.href = location.protocol == 'file:' ? '../index.html' : '/music'
         }
+        clientWidth > 500 && (clientWidth = 500);
+        document.documentElement.style.fontSize = clientWidth/3.75 + 'px';
     </script>
 </head>
 
