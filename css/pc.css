@@ -1,9 +1,14 @@
 body {
     min-width: 1000px;
+    font-size: .14rem;
+}
+
+input {
+    font-size: .14rem;
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+    width: .05rem;
 }
 ::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
@@ -13,18 +18,18 @@ body {
 }
 
 .header {
-    flex: 0 0 50px;
-    line-height: 50px;
+    flex: 0 0 .5rem;
+    line-height: .5rem;
 }
 
 .logo {
-    font-size: 23px;
+    font-size: .23rem;
 }
 
 .header_title {
     color: #ccc;
-    margin-left: 20px;
-    font-size: 23px;
+    margin-left: .2rem;
+    font-size: .23rem;
     cursor: pointer;
     float: left;
 }
@@ -34,12 +39,12 @@ body {
 }
 
 .search {
-    width: 250px;
-    height: 30px;
+    width: 2.5rem;
+    height: .3rem;
     border: 1px solid #ccc;
     float: left;
     border-radius: 20px;
-    margin-top: 10px;
+    margin-top: .1rem;
     margin-left: 20%;
     display: flex;
     position: relative;
@@ -59,17 +64,17 @@ body {
     height: 23px;
     display: inline-block;
     background-size: auto 23px;
-    margin-left: 10px;
+    margin-left: .1rem;
     cursor: pointer;
 }
 
 .search_source_list {
-    padding: 5px 0;
+    padding: .05rem 0;
     background: #eee;
-    box-shadow: 0 0 8px #d4d3d3;
+    box-shadow: 0 0 10px #d4d3d3;
     border-radius: 3px;
     position: absolute;
-    top: 32px;
+    top: .32rem;
     left: 0;
     z-index: 999;
     display: none;
@@ -77,21 +82,20 @@ body {
 
 .search_source_list:before {
     content: '';
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid #eee;
+    border-left: .1rem solid transparent;
+    border-right: .1rem solid transparent;
+    border-top: .1rem solid transparent;
+    border-bottom: .1rem solid #eee;
     position: absolute;
-    top: -20px;
-    left: 10px;
+    top: -0.19rem;
+    left: .1rem;
 }
 
 .search_source_item {
-    width: 150px;
-    padding: 5px 10px;
-    line-height: 23px;
+    width: 1.5rem;
+    padding: .05rem .1rem;
+    line-height: .23rem;
     cursor: pointer;
-    font-size: 15px;
 }
 
 .search_source_item:hover {
@@ -105,7 +109,7 @@ body {
     background-size: auto 23px;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 5px;
+    margin-right: .05rem;
 }
 
 .search_source[data-source=netease], .search_source_item[data-source=netease]:before {
@@ -134,8 +138,8 @@ body {
     background: none;
     outline: none;
     border: none;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: .1rem;
+    padding-right: .1rem;
     color: #fff;
 }
 
@@ -143,7 +147,6 @@ body {
     width: 90%;
     margin: 0 auto;
     display: flex;
-    font-size: 14px;
     overflow: hidden;
     position: relative;
 }
@@ -155,7 +158,7 @@ body {
 }
 
 .song-list-top {
-    flex: 0 0 50px;
+    flex: 0 0 .5rem;
 }
 
 .song-list {
@@ -185,7 +188,8 @@ body {
     cursor: pointer;
     background: url('../img/icon.png') no-repeat;
     position: absolute;
-    top: 6px;
+    top: 50%;
+    transform: translateY(-50%);
     display: none;
 }
 
@@ -232,28 +236,27 @@ body {
 .footer {
     width: 90%;
     margin: 0 auto;
-    flex: 0 0 100px;
+    flex: 0 0 1rem;
     display: flex;
     align-items: center;
 }
 
 .progress {
     flex: 1;
-    font-size: 14px;
 }
 
 .current-time, .total-time {
-    margin: 0 10px;
+    margin: 0 .1rem;
 }
 
 #progress {
     flex: 1;
-    height: 25px;
+    height: .25rem;
     cursor: pointer;
 }
 
 .control {
-    flex: 0 0 250px;
+    flex: 0 0 2.5rem;
 }
 
 .control .iconfont {
@@ -265,8 +268,8 @@ body {
 }
 
 #playing {
-    flex: 0 0 75px;
-    height: 30px;
+    flex: 0 0 .75rem;
+    height: .3rem;
     display: flex;
     color: #ddd;
     border: 1px solid #ddd;
@@ -281,14 +284,14 @@ body {
 }
 
 #playing .playlist {
-    font-size: 30px;
-    flex: 0 0 30px;
+    font-size: .3rem;
+    flex: 0 0 .3rem;
     position: relative;
-    top: -2px;
+    top: -0.02rem;
 }
 
 #playing .count {
     flex: 1;
-    line-height: 30px;
+    line-height: .3rem;
     text-align: center;
 }

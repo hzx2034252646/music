@@ -124,11 +124,8 @@ $(function() {
     })
     $('.song-list').delegate('li', 'mouseenter', function() {
         var dis1 = $(this).find('.title').width(),
-            dis2 = 140;
-        if ($(this).hasClass('searching')) {
-            dis2 = 90;
-        }
-        $(this).find('.title').find('.ellipsis').css('width', dis1 - dis2 + 'px');
+            dis2 = parseFloat($(this).find('.play_icon').css('right'))+40;
+        dis1> dis2 && $(this).find('.title').find('.ellipsis').css('width', dis1 - dis2 + 'px');
     })
     $('.song-list').delegate('li', 'mouseleave', function() {
         $(this).find('.title').find('.ellipsis').css('width', '100%');

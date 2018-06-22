@@ -3,6 +3,10 @@ body, div, ul, li, p {
     margin: 0;
 }
 
+html {
+    font-size: 100px;
+}
+
 body, html {
     height: 100%;
 }
@@ -35,7 +39,7 @@ ul {
 
 .iconfont {
     font-family: "iconfont" !important;
-    font-size: 16px;
+    font-size: .14rem;
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke-width: 0.2px;
@@ -95,24 +99,24 @@ ul {
 }
 
 .li-active .num {
-    background: url('../img/wave.gif') 20px 20px no-repeat;
-    text-indent: -99px;
+    background: url('../img/wave.gif') .2rem .2rem   no-repeat;
+    text-indent: -99px; 
 }
 
 .song-list-item, .song-list-top{
-    height: 50px;
+    height: .5rem;
     display: flex;
-    line-height: 50px;
+    line-height: .5rem;
     border-bottom: 1px solid rgba(255, 255, 255, .1);
 }
 
 .song-list-item .num, .song-list-top .num{
-    flex: 0 0 50px;
+    flex: 0 0 .5rem;
     text-align: center;
 }
 
 .title, .singer, .album {
-    padding-right: 10px;
+    padding-right: .1rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -127,8 +131,8 @@ ul {
 }
 
 .loadMore, .noMore {
-    height: 50px;
-    line-height: 50px;
+    height: .5rem;
+    line-height: .5rem;
     text-align: center;
     cursor: pointer;
 }
@@ -141,9 +145,9 @@ ul {
 }
 
 .player .pic {
-    flex: 0 0 200px;
-    width: 200px;
-    margin: 10px 0;
+    flex: 0 0 2rem;
+    width: 2rem;
+    margin: .1rem 0;
 }
 
 .pic img {
@@ -181,23 +185,22 @@ ul {
     height: 10px;
     display: inline-block;
     background: url('../img/wave.gif') no-repeat;
-    margin-right: 10px;
+    margin-right: .1rem;
 }
 
 .progress {
-    flex: 0 0 30px;
+    flex: 0 0 .3rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
     color: #eee;
-    font-size: 12px;
 }
 
 .progressbar {
-    height: 3px;
+    height: .03rem;
     background: #aaa;
     position: relative;
-    margin-top: 11px;
+    margin-top: .11rem;
 }
 
 .current-progress {
@@ -221,25 +224,25 @@ ul {
 }
 
 .ball {
-    width: 15px;
-    height: 15px;
+    width: .15rem;
+    height: .15rem;
     border-radius: 50%;
     background: #fff;
     position: absolute;
-    top: -6px;
+    top: -0.06rem;
     left: 0;
     box-shadow: 0 0 10px #fff;
     z-index: 2;
 }
 
 .red-dot {
-    width: 5px;
-    height: 5px;
+    width: .05rem;
+    height: .05rem;
     border-radius: 50%;
     background: #d43c33;
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: .05rem;
+    left: .05rem;
     z-index: 2;
 }
 
@@ -254,7 +257,7 @@ ul {
 }
 
 .singlePlay, .listLoop, .randomPlay, .setting {
-    font-size: 25px !important;
+    font-size: .25rem !important;
 }
 
 .listLoop, .randomPlay {
@@ -262,11 +265,11 @@ ul {
 }
 
 .prev, .next {
-    font-size: 40px !important;
+    font-size: .4rem !important;
 }
 
 .play, .pause {
-    font-size: 60px !important;
+    font-size: .6rem !important;
 }
 
 .pause {
