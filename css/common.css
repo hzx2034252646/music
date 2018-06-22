@@ -224,25 +224,25 @@ ul {
 }
 
 .ball {
-    width: .15rem;
-    height: .15rem;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
     background: #fff;
     position: absolute;
-    top: -0.06rem;
+    top: -6px;
     left: 0;
     box-shadow: 0 0 10px #fff;
     z-index: 2;
 }
 
 .red-dot {
-    width: .05rem;
-    height: .05rem;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #d43c33;
     position: absolute;
-    top: .05rem;
-    left: .05rem;
+    top: 5px;
+    left: 5px;
     z-index: 2;
 }
 
