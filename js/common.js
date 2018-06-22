@@ -190,7 +190,6 @@ function playMusic(id) {
     lastPlayTime = Date.now();
     audio.pause();
     var h = $('.content').height()/2;
-    console.log(h)
     $('.lyric').html('<p style="margin-top:'+h+'px;color:#fff"><span class="wave"></span>歌词加载中</p>');
     $.ajax({
         type: 'POST',
